@@ -1,3 +1,5 @@
 flask_dir/__pycache__/__init__.cpython-310.pyc
 flask_dir/plotlydash/__pycache__/dashboard.cpython-310.pyc
 flask_dir/__pycache__/routes.cpython-310.pyc
+flask_dir/__pycache__/forms.cpython-310.pyc
+flask_dir/__pycache__/models.cpython-310.pyc
