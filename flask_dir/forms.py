@@ -16,11 +16,11 @@ class RegistrationForm(FlaskForm):
         # if the username already exists throw validation error 
         user = User.query.filter_by(username = username.data).first()
         if user:
-            ValidationError('The Username is taken')
+            raise ValidationError('The Username is taken')
     def validate_email(self, email):
         email = User.query.filter_by(email = email.data).first()
         if email:
-            ValidationError('The Email is taken')
+            raise ValidationError('The Email is taken')
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators = [Email()])
