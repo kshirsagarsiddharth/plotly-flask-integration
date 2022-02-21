@@ -9,7 +9,7 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 from flask_dir import app, flask_app, app2
 
-df = pd.read_csv("flask_dir\plotlydash\mpg.csv")
+df = pd.read_csv("https://github.com/kshirsagarsiddharth/plotly-flask-integration/blob/master/flask_dir/plotlydash/mpg.csv")
 
 features = df.columns
 
