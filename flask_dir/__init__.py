@@ -9,13 +9,15 @@ import plotly.express as px
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask import Flask
 
 
 
 #app = dash.Dash()
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],url_base_pathname='/external_dashboard/')
 
-flask_app = app.server
+flask_app = Flask(__name__)
+app = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],url_base_pathname='/external_dashboard/', server = flask_app)
+app2 = dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],url_base_pathname='/external_dashboard_two/', server = flask_app)
 flask_app.config['SECRET_KEY'] = '8eb99d7900a98f5a894761e61d5076dd'
 flask_app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
 db = SQLAlchemy(flask_app)

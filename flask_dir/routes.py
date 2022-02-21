@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, flash, redirect, url_for
-from flask_dir import flask_app, app  
+from flask_dir import flask_app, app, app2  
 from bs4 import BeautifulSoup
 from flask_dir.forms import RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
@@ -19,6 +19,13 @@ def dashapp():
     soup = BeautifulSoup(app.index(), 'html.parser')
     footer = soup.footer
     return render_template('dash1.html', title='test', footer=footer)
+
+
+@flask_app.route('/dashapp2', methods=['GET', 'POST'])
+def dashapp2():
+    soup = BeautifulSoup(app2.index(), 'html.parser')
+    footer = soup.footer
+    return render_template('dash2.html', title='test', footer=footer)
 
 
 @flask_app.route('/register', methods = ['GET','POST'])
