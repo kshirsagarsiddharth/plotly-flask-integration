@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="media">
+        <img src="{{ image_file }}" class="mr-3" alt="..." style='width:128px; height:128px'>
+        <div class="media-body">
+            <h5 class="mt-0">{{ current_user.username|capitalize }}</h5>
+            <p class="text-muted">{{ current_user.email }}</p>
+        </div>
+    </div>
+    <br>
+    <h3>Update Account</h3>
+    <div class="w-70">
+        <div class="form-group">
+            {{ form.username.label() }}
+            {% if form.username.errors %}
+                    {{ form.username(class = 'form-control is-invalid') }}
+                    <div class="invalid-feedback">
+                      {% for error in form.username.errors %}
+                              <span>{{ error }}</span>
+                      {% endfor %}
+                      
+                    </div>
+            {% else %}
+                    {{ form.username(class = 'form-control', placeholder = 'Enter New Username') }}
+            {% endif %}
+             
+        </div>
+
+        <div class = "form-group">
+            {{ form.email.label() }}
+            {% if form.email.errors %}
+                    {{ form.email(class = 'form-control is-invalid') }}
+                    <div class = 'invalid-feedback'>
+                        {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                        {% endfor %}
+                        
+                    </div>
+            {% else %}
+                {{ form.email(class = 'form-control', placeholder = 'Enter New Email') }}
+            {% endif %}
+        </div>
+
+        <div class = 'form-group'>
+            {{ form.submit(class = "btn btn-primary") }}
+        </div>
+    </div>
+    </form>
+</form>
+{% endblock %}

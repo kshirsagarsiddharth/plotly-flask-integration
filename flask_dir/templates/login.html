@@ -7,6 +7,35 @@
 
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul class="flashes">
+     {% for message in messages %}
+        {% if message.split()[0] == 'Account' %}
+       
+
+          
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <p>{{message}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        {% elif message.split()[0] == 'Please' %}
+        <div class="container alert alert-warning alert-dismissible fade show" role="alert">
+            <p>{{message}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        
+     
+     {% endfor %}
+ </ul>
+{% endif %}
+{% endwith %}
     <br>
     <br>
     <div class="container border w-75 p-2">
