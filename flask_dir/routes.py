@@ -1,4 +1,6 @@
-
+import os 
+import secrets
+from PIL import Image
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_dir import flask_app, app, app2  
 from bs4 import BeautifulSoup
@@ -68,11 +70,27 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+def save_picture(form_file):
+    random_hex = secrets.token_hex(8)
+    _, f_extension = os.path.splitext(form_file.filename)
+    new_filename = f"{random_hex}{f_extension}"
+    picture_path = os.path.join(flask_app.root_path,'static/profile_images', new_filename)
+    image = Image.open(form_file)
+    required_shape = (128,128)
+    image.thumbnail(required_shape)
+    image.save(picture_path)
+    return new_filename
+
+
+
 @flask_app.route("/account", methods = ['GET','POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.profile_image.data:
+            new_filename = save_picture(form.profile_image.data)
+            current_user.image_file = new_filename
         current_user.username = form.username.data 
         current_user.email = form.email.data 
         db.session.commit()

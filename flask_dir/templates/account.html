@@ -7,7 +7,7 @@
 {% block content %}
 <br>
 <br>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="media">
         <img src="{{ image_file }}" class="mr-3" alt="..." style='width:128px; height:128px'>
@@ -48,6 +48,20 @@
             {% else %}
                 {{ form.email(class = 'form-control', placeholder = 'Enter New Email') }}
             {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.profile_image.label() }}
+            {{ form.profile_image() }}
+            <p>
+                {% if form.profile_image.errors %}
+                        {% for error in form.profile_image.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                        
+                {% endif %}
+                
+            </p>
         </div>
 
         <div class = 'form-group'>
